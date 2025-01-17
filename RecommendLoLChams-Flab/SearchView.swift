@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SearchView.swift
 //  RecommendLoLChams-Flab
 //
 //  Created by 김혜지 on 1/7/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SearchView: View {
     @State private var keyword: String = ""
     @State private var results: [String] = []
 
@@ -47,5 +47,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SearchView()
 }
