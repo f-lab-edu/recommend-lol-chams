@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var keyword: String = ""
-    @State private var results: [String] = []
+    @StateObject private var viewModel: SearchViewModel
+
+    init() {
+        self._viewModel = StateObject(wrappedValue: SearchViewModel(userSearchAPI: SummonerSearchService(client: LiveHTTPClient())))
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,21 +26,26 @@ struct SearchView: View {
         HStack {
             Image(systemName: "magnifyingglass")
 
-            TextField("소환사 ID를 입력해 주세요", text: $keyword)
+            TextField("소환사 ID를 입력해 주세요", text: $viewModel.keyword)
 
-            if !keyword.isEmpty {
+            if !viewModel.keyword.isEmpty {
                 Button {
-                    keyword = ""
+                    viewModel.clearKeyword()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                 }
             }
+
+            Button("검색") {
+                Task { await viewModel.search() }
+            }
+            .disabled(viewModel.keyword.isEmpty)
         }
     }
 
     private var searchView: some View {
-        List(results, id: \.self) { item in
-            itemRow(item)
+        List(viewModel.summoners) { summoner in
+            itemRow(summoner.name)
         }
     }
 
