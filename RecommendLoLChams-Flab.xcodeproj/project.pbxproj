@@ -10,11 +10,13 @@
 		33C3F86A2D2D866B008D1227 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F8692D2D866B008D1227 /* FirebaseCrashlytics */; };
 		33C3F86D2D2D86A4008D1227 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F86C2D2D86A4008D1227 /* FirebaseAnalytics */; };
 		33C3F89B2D3AA611008D1227 /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 33C3F89A2D3AA611008D1227 /* Secret.xcconfig */; };
+		33C3F8B32D401668008D1227 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 33C3F8B22D401668008D1227 /* swiftgen.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33C3F8202D2D68D9008D1227 /* RecommendLoLChams-Flab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecommendLoLChams-Flab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C3F89A2D3AA611008D1227 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		33C3F8B22D401668008D1227 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				33C3F89A2D3AA611008D1227 /* Secret.xcconfig */,
+				33C3F8B22D401668008D1227 /* swiftgen.yml */,
 				33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */,
 				33C3F86B2D2D86A4008D1227 /* Frameworks */,
 				33C3F8212D2D68D9008D1227 /* Products */,
@@ -86,7 +89,8 @@
 				33C3F81C2D2D68D9008D1227 /* Sources */,
 				33C3F81D2D2D68D9008D1227 /* Frameworks */,
 				33C3F81E2D2D68D9008D1227 /* Resources */,
-				33C3F8752D2D88B6008D1227 /* ShellScript */,
+				33C3F8752D2D88B6008D1227 /* Run Script */,
+				33C3F8B12D3FCF94008D1227 /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -149,13 +153,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				33C3F89B2D3AA611008D1227 /* Secret.xcconfig in Resources */,
+				33C3F8B32D401668008D1227 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33C3F8752D2D88B6008D1227 /* ShellScript */ = {
+		33C3F8752D2D88B6008D1227 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -170,6 +175,7 @@
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
 				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -177,6 +183,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		33C3F8B12D3FCF94008D1227 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftgen config run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
