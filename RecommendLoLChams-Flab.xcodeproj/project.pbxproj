@@ -9,31 +9,28 @@
 /* Begin PBXBuildFile section */
 		33C3F86A2D2D866B008D1227 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F8692D2D866B008D1227 /* FirebaseCrashlytics */; };
 		33C3F86D2D2D86A4008D1227 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F86C2D2D86A4008D1227 /* FirebaseAnalytics */; };
-		33C3F89B2D3AA611008D1227 /* Secret.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 33C3F89A2D3AA611008D1227 /* Secret.xcconfig */; };
-		33C3F8B32D401668008D1227 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 33C3F8B22D401668008D1227 /* swiftgen.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33C3F8202D2D68D9008D1227 /* RecommendLoLChams-Flab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecommendLoLChams-Flab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C3F89A2D3AA611008D1227 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
-		33C3F8B22D401668008D1227 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		33C3F89D2D3AA706008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */ = {
+		33C3F9022D4019F7008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				"Supporting Files/Info.plist",
 			);
 			target = 33C3F81F2D2D68D9008D1227 /* RecommendLoLChams-Flab */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */ = {
+		33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				33C3F89D2D3AA706008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */,
+				33C3F9022D4019F7008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */,
 			);
 			path = "RecommendLoLChams-Flab";
 			sourceTree = "<group>";
@@ -56,9 +53,7 @@
 		33C3F8172D2D68D9008D1227 = {
 			isa = PBXGroup;
 			children = (
-				33C3F89A2D3AA611008D1227 /* Secret.xcconfig */,
-				33C3F8B22D401668008D1227 /* swiftgen.yml */,
-				33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */,
+				33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */,
 				33C3F86B2D2D86A4008D1227 /* Frameworks */,
 				33C3F8212D2D68D9008D1227 /* Products */,
 			);
@@ -98,7 +93,7 @@
 				33C3F83C2D2D7806008D1227 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */,
+				33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */,
 			);
 			name = "RecommendLoLChams-Flab";
 			packageProductDependencies = (
@@ -152,8 +147,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33C3F89B2D3AA611008D1227 /* Secret.xcconfig in Resources */,
-				33C3F8B32D401668008D1227 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
