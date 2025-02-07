@@ -20,7 +20,7 @@
 		33C3F9022D4019F7008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Supporting Files/Info.plist",
+				SupportingFiles/Info.plist,
 			);
 			target = 33C3F81F2D2D68D9008D1227 /* RecommendLoLChams-Flab */;
 		};
@@ -81,11 +81,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33C3F82E2D2D68DB008D1227 /* Build configuration list for PBXNativeTarget "RecommendLoLChams-Flab" */;
 			buildPhases = (
+				33C3F8B12D3FCF94008D1227 /* SwiftGen */,
 				33C3F81C2D2D68D9008D1227 /* Sources */,
 				33C3F81D2D2D68D9008D1227 /* Frameworks */,
 				33C3F81E2D2D68D9008D1227 /* Resources */,
-				33C3F8752D2D88B6008D1227 /* Run Script */,
-				33C3F8B12D3FCF94008D1227 /* SwiftGen */,
+				33C3F8752D2D88B6008D1227 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -153,7 +153,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33C3F8752D2D88B6008D1227 /* Run Script */ = {
+		33C3F8752D2D88B6008D1227 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -168,7 +168,7 @@
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
 				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
 			);
-			name = "Run Script";
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -193,7 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen config run\n";
+			shellScript = "# 1) Homebrew SwiftGen 위치 지정\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\necho \"==== Debug Info ====\"\necho \"PROJECT_DIR: ${PROJECT_DIR}\"\necho \"Contents of ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nls -l \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\n\n# 2) SwiftGen 실행\ncd \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nswiftgen config run --config swiftgen.yml\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -347,7 +347,7 @@
 				DEVELOPMENT_TEAM = DH9CS7PA5D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RecommendLoLChams-Flab/Info.plist";
+				INFOPLIST_FILE = "RecommendLoLChams-Flab/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -379,7 +379,7 @@
 				DEVELOPMENT_TEAM = DH9CS7PA5D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "RecommendLoLChams-Flab/Info.plist";
+				INFOPLIST_FILE = "RecommendLoLChams-Flab/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
