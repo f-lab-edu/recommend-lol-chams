@@ -5,31 +5,61 @@
 //  Created by 김혜지 on 1/18/25.
 //
 
+import Combine
 import Foundation
 
 final class SearchViewModel: ObservableObject {
     @Published var keyword: String = ""
     @Published private(set) var summoners: [Summoner] = []
 
-    private let userSearchAPI: SummonerSearchAPI
+    private let summonerSearchApi: SummonerSearchUseCase
+    
+    let clearKeyword: PassthroughSubject<Void, Never> = .init()
+    let searchSummoner: PassthroughSubject<String, Never> = .init()
+    private var cancellables: Set<AnyCancellable> = []
 
-    init(userSearchAPI: SummonerSearchAPI) {
-        self.userSearchAPI = userSearchAPI
+    init(summonerSearchApi: SummonerSearchUseCase) {
+        self.summonerSearchApi = summonerSearchApi
+        bind()
     }
-
-    @MainActor
-    func clearKeyword() {
-        keyword = ""
-    }
-
-    func search() async {
-        do {
-            let summoners = try await userSearchAPI.searchUser(id: keyword)
-            await MainActor.run {
-                self.summoners = summoners
+    
+    private func bind() {
+        clearKeyword
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                Task { @MainActor [weak self] in
+                    guard let self else { return }
+                    self.keyword = ""
+                }
             }
-        } catch {
-            print("error: \(error.localizedDescription)")
-        }
+            .store(in: &cancellables)
+        
+        searchSummoner
+            .filter { !$0.isEmpty }
+            .flatMap { keyword in
+                Future<[Summoner], Error> { promise in
+                    Task { [weak self] in
+                        guard let self else {
+                            return promise(.failure(ApplicationError.selfIsNil))
+                        }
+                        
+                        do {
+                            let summoners = try await self.summonerSearchApi.searchSummoner(name: keyword)
+                            return promise(.success(summoners))
+                        } catch {
+                            return promise(.failure(error))
+                        }
+                    }
+                }
+            }
+            .replaceError(with: [])
+            .receive(on: DispatchQueue.main)
+            .sink { result in
+                Task { @MainActor [weak self] in
+                    guard let self else { return }
+                    self.summoners = result
+                }
+            }
+            .store(in: &cancellables)
     }
 }

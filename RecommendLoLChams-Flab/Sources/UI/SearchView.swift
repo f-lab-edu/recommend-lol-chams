@@ -11,7 +11,7 @@ struct SearchView: View {
     @StateObject private var viewModel: SearchViewModel
 
     init() {
-        self._viewModel = StateObject(wrappedValue: SearchViewModel(userSearchAPI: SummonerSearchService(client: LiveHTTPClient())))
+        self._viewModel = StateObject(wrappedValue: SearchViewModel(summonerSearchApi: SummonerSearchService(client: LiveHTTPClient())))
     }
 
     var body: some View {
@@ -30,14 +30,14 @@ struct SearchView: View {
 
             if !viewModel.keyword.isEmpty {
                 Button {
-                    viewModel.clearKeyword()
+                    viewModel.clearKeyword.send()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                 }
             }
 
             Button("검색") {
-                Task { await viewModel.search() }
+                viewModel.searchSummoner.send(viewModel.keyword)
             }
             .disabled(viewModel.keyword.isEmpty)
         }
