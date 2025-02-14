@@ -11,7 +11,7 @@ struct SearchView: View {
     @ObservedObject private var viewModel: SearchViewModel
 
     init(viewModel: SearchViewModel) {
-        self.viewModel = SearchViewModel(summonerSearchApi: SummonerSearchService(client: LiveHTTPClient()))
+        self.viewModel = SearchViewModel(summonerSearchApi: SearchService(client: LiveHTTPClient()))
     }
 
     var body: some View {
@@ -60,12 +60,24 @@ private struct ResultView: View {
     }
     
     var body: some View {
-        List(viewModel.summoners) { summoner in
-            Text(summoner.name)
+        if let summoner = viewModel.summoner {
+            HStack {
+                Text("puuid: \(summoner.puuid)")
+                Spacer()
+                Text("Lv. \(summoner.summonerLevel)")
+            }
+        } else {
+            VStack {
+                Spacer()
+                Image("exclamationmark.circle.fill")
+                Spacer()
+                Text("해당하는 소환사가 없습니다!")
+                Spacer()
+            }
         }
     }
 }
 
 #Preview {
-    SearchView(viewModel: SearchViewModel(summonerSearchApi: MockSummonerSearchService()))
+    SearchView(viewModel: SearchViewModel(summonerSearchApi: MockSearchService()))
 }
