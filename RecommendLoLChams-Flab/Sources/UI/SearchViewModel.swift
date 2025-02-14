@@ -12,13 +12,13 @@ final class SearchViewModel: ObservableObject {
     @Published var keyword: String = ""
     @Published private(set) var summoners: [Summoner] = []
 
-    private let summonerSearchApi: SummonerSearchAPI
+    private let summonerSearchApi: SummonerSearchUseCase
     
     let clearKeyword: PassthroughSubject<Void, Never> = .init()
     let searchSummoner: PassthroughSubject<String, Never> = .init()
     private var cancellables: Set<AnyCancellable> = []
 
-    init(summonerSearchApi: SummonerSearchAPI) {
+    init(summonerSearchApi: SummonerSearchUseCase) {
         self.summonerSearchApi = summonerSearchApi
         
         bind()
@@ -45,7 +45,7 @@ final class SearchViewModel: ObservableObject {
                         }
                         
                         do {
-                            let summoners = try await self.summonerSearchApi.searchUser(name: keyword)
+                            let summoners = try await self.summonerSearchApi.searchSummoner(name: keyword)
                             return promise(.success(summoners))
                         } catch {
                             return promise(.failure(error))
