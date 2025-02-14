@@ -10,7 +10,7 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         TabView {
-            SearchView()
+            SearchView(viewModel: SearchViewModel(summonerSearchApi: SummonerSearchService(client: LiveHTTPClient())))
                 .tabItem {
                     VStack {
                         Image(systemName: "magnifyingglass")

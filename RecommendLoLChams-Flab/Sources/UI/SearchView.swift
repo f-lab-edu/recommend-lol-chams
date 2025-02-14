@@ -8,21 +8,29 @@
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject private var viewModel: SearchViewModel
+    @ObservedObject private var viewModel: SearchViewModel
 
-    init() {
-        self._viewModel = StateObject(wrappedValue: SearchViewModel(userSearchAPI: SummonerSearchService(client: LiveHTTPClient())))
+    init(viewModel: SearchViewModel) {
+        self.viewModel = SearchViewModel(summonerSearchApi: SummonerSearchService(client: LiveHTTPClient()))
     }
 
     var body: some View {
         VStack(alignment: .leading) {
-            searchBar
-            searchView
+            SearchBar(viewModel: viewModel)
+            ResultView(viewModel: viewModel)
         }
         .padding()
     }
+}
 
-    private var searchBar: some View {
+private struct SearchBar: View {
+    @ObservedObject private var viewModel: SearchViewModel
+
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+    }
+
+    var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
 
@@ -30,30 +38,34 @@ struct SearchView: View {
 
             if !viewModel.keyword.isEmpty {
                 Button {
-                    viewModel.clearKeyword()
+                    viewModel.clearKeyword.send()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                 }
             }
 
             Button("검색") {
-                Task { await viewModel.search() }
+                viewModel.searchSummoner.send(viewModel.keyword)
             }
             .disabled(viewModel.keyword.isEmpty)
         }
     }
+}
 
-    private var searchView: some View {
-        List(viewModel.summoners) { summoner in
-            itemRow(summoner.name)
-        }
+private struct ResultView: View {
+    @ObservedObject private var viewModel: SearchViewModel
+    
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
     }
-
-    private func itemRow(_ content: String) -> some View {
-        Text(content)
+    
+    var body: some View {
+        List(viewModel.summoners) { summoner in
+            Text(summoner.name)
+        }
     }
 }
 
 #Preview {
-    SearchView()
+    SearchView(viewModel: SearchViewModel(summonerSearchApi: MockSummonerSearchService()))
 }
