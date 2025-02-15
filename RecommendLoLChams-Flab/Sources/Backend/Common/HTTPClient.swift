@@ -20,18 +20,24 @@ struct LiveHTTPClient: HTTPClient {
     }
     
     func fetch(from api: some RequestAPI) async throws -> Data {
-        let urlRequest = try makeURLRequest(from: api)
-        let (data, response) = try await session.data(for: urlRequest)
-        return data
+        do {
+            let urlRequest = try makeURLRequest(from: api)
+            let (data, response) = try await session.data(for: urlRequest)
+            return data
+        } catch {
+            print("Failed : \(error.localizedDescription)")
+            throw error
+        }
     }
     
     private func makeURLRequest(from api: some RequestAPI) throws -> URLRequest {
         guard let url = api.url else { throw HTTPError.invalidURL }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = api.httpMethod.rawValue
-//        urlRequest.allHTTPHeaderFields = api.headers
-        print(urlRequest.allHTTPHeaderFields ?? "HTTPHeaderFields are empty")
-        urlRequest.httpBody = try makeBody(with: api.parameter)
+        api.headers.forEach({ (key, value) in
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        })
+        urlRequest.httpBody = try? makeBody(with: api.parameter)
         return urlRequest
     }
     
