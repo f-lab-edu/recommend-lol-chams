@@ -94,6 +94,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				33C3F83C2D2D7806008D1227 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */,
@@ -231,6 +232,12 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		33C3F83C2D2D7806008D1227 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		33C3F82C2D2D68DB008D1227 /* Debug */ = {
