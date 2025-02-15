@@ -94,6 +94,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				33C3F83C2D2D7806008D1227 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */,
@@ -232,6 +233,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		33C3F83C2D2D7806008D1227 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 33C3F83B2D2D7806008D1227 /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		33C3F82C2D2D68DB008D1227 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -354,6 +362,7 @@
 		};
 		33C3F82F2D2D68DB008D1227 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33C3F89A2D3AA611008D1227 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -386,6 +395,7 @@
 		};
 		33C3F8302D2D68DB008D1227 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33C3F89A2D3AA611008D1227 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
