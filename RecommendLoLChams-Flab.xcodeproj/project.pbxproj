@@ -20,6 +20,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SupportingFiles/Info.plist,
+				SupportingFiles/Secret.xcconfig,
 			);
 			target = 33C3F81F2D2D68D9008D1227 /* RecommendLoLChams-Flab */;
 		};
@@ -230,6 +231,8 @@
 /* Begin XCBuildConfiguration section */
 		33C3F82C2D2D68DB008D1227 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */;
+			baseConfigurationReferenceRelativePath = SupportingFiles/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -293,6 +296,8 @@
 		};
 		33C3F82D2D2D68DB008D1227 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */;
+			baseConfigurationReferenceRelativePath = SupportingFiles/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -349,6 +354,8 @@
 		};
 		33C3F82F2D2D68DB008D1227 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */;
+			baseConfigurationReferenceRelativePath = SupportingFiles/Secret.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -381,6 +388,8 @@
 		};
 		33C3F8302D2D68DB008D1227 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 33C3F8F32D4019F7008D1227 /* RecommendLoLChams-Flab */;
+			baseConfigurationReferenceRelativePath = SupportingFiles/Secret.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
