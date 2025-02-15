@@ -13,21 +13,21 @@ struct SearchService: SearchSummonerUseCase {
     }
     
     func getPuuid(gameName: String, tagLine: String) async throws -> String {
-        let api = GetPuuidAPI(gameName: gameName, tagLine: tagLine)
+        let api = try GetPuuidAPI(gameName: gameName, tagLine: tagLine)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: PuuidDTO.self) else { throw HTTPError.invalidData }
         return dto.puuid
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
-        let api = SearchSummonerAPI(puuid: puuid)
+        let api = try SearchSummonerAPI(puuid: puuid)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: SummonerDTO.self) else { throw HTTPError.invalidData }
         return dto.toModel()
     }
 
     func searchSummoner(name: String) async throws -> Summoner {
-        let api = SearchSummonerAPI(name: name)
+        let api = try SearchSummonerAPI(name: name)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: SummonerDTO.self) else { throw HTTPError.invalidData }
         return dto.toModel()

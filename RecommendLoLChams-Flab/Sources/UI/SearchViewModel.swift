@@ -46,6 +46,7 @@ final class SearchViewModel: ObservableObject {
                         guard let (gameName, tagLine) = self.extract(from: keyword) else { return }
                         
                         do {
+                            // TODO: puuid를 통해 전적검색 api 호출
                             async let puuid = try await self.summonerSearchApi.getPuuid(gameName: gameName, tagLine: tagLine)
                             let summoner = try await self.summonerSearchApi.searchSummoner(puuid: puuid)
                             return promise(.success(summoner))

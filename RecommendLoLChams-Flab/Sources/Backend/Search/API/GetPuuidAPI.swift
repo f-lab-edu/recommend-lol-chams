@@ -16,9 +16,10 @@ struct GetPuuidAPI: RequestAPI {
     let httpMethod: HTTPMethod
     let parameter: EmptyParameter?
     
-    init(gameName: String, tagLine: String) {
-        self.url = URL(string: "https://kr.api.riotgames.com/riot/account/v1/accounts/by-riot-id/\(gameName)/\(tagLine)")
-        self.headers = [:]
+    init(gameName: String, tagLine: String) throws {
+        guard let token = Config.riotApiKey else { throw EnvironmentError.emptyApiKey }
+        self.url = URL(string: "https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/\(gameName)/\(tagLine)")
+        self.headers = ["X-Riot-Token": token]
         self.httpMethod = .get
         self.parameter = nil
     }
