@@ -15,7 +15,7 @@ struct SearchView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             SearchBar(viewModel: viewModel)
             ResultView(viewModel: viewModel)
         }
@@ -41,6 +41,7 @@ private struct SearchBar: View {
                     viewModel.clearKeyword.send()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.lightGray)
                 }
             }
 
@@ -67,11 +68,12 @@ private struct ResultView: View {
                 Text("Lv. \(summoner.summonerLevel)")
             }
         } else {
-            VStack {
+            VStack(spacing: 30) {
                 Spacer()
-                Image("exclamationmark.circle.fill")
-                Spacer()
-                Text("해당하는 소환사가 없습니다!")
+                Image(systemName: "exclamationmark.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                Text("해당되는 소환사가 없습니다!")
                 Spacer()
             }
         }

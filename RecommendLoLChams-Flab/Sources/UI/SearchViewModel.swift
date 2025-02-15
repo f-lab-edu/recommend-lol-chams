@@ -10,7 +10,7 @@ import Foundation
 
 final class SearchViewModel: ObservableObject {
     @Published var keyword: String = ""
-    @Published private(set) var summoner: Summoner? = nil
+    @Published private(set) var summoner: Summoner?
 
     private let summonerSearchApi: SearchSummonerUseCase
     
