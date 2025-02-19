@@ -82,6 +82,7 @@
 			buildPhases = (
 				33C3F8B12D3FCF94008D1227 /* SwiftGen */,
 				33C3F81C2D2D68D9008D1227 /* Sources */,
+				33C3F90A2D599374008D1227 /* SwiftLint */,
 				33C3F81D2D2D68D9008D1227 /* Frameworks */,
 				33C3F81E2D2D68D9008D1227 /* Resources */,
 				33C3F8752D2D88B6008D1227 /* Crashlytics */,
@@ -89,7 +90,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				33C3F83C2D2D7806008D1227 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */,
@@ -154,6 +154,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		33C3F8752D2D88B6008D1227 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -178,6 +179,7 @@
 		};
 		33C3F8B12D3FCF94008D1227 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -194,6 +196,25 @@
 			shellPath = /bin/sh;
 			shellScript = "# 1) Homebrew SwiftGen 위치 지정\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\necho \"==== Debug Info ====\"\necho \"PROJECT_DIR: ${PROJECT_DIR}\"\necho \"Contents of ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nls -l \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\n\n# 2) SwiftGen 실행\ncd \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nswiftgen config run --config swiftgen.yml\n";
 		};
+		33C3F90A2D599374008D1227 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -205,13 +226,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		33C3F83C2D2D7806008D1227 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 33C3F83B2D2D7806008D1227 /* SwiftLintBuildToolPlugin */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		33C3F82C2D2D68DB008D1227 /* Debug */ = {
@@ -439,11 +453,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		33C3F83B2D2D7806008D1227 /* SwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 33C3F83A2D2D77C2008D1227 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
 		33C3F8692D2D866B008D1227 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 33C3F8682D2D866B008D1227 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
