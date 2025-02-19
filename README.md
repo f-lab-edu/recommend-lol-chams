@@ -18,5 +18,5 @@
 
 # Secret API Key 추가 방법
 
-1. 별도로 전달받은 `Secret.xcconfig` 파일을 최상위 폴더에 추가합니다.
+1. 별도로 전달받은 `Secret.xcconfig` 파일을 SupportingFiles 폴더에 추가합니다.
 2. OpenAI와 Riot Key가 모두 작성되어있는지 확인합니다.
