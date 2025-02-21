@@ -25,11 +25,4 @@ struct SearchService: SearchSummonerUseCase {
         guard let dto = try? Mapper.map(from: data, to: SummonerDTO.self) else { throw HTTPError.invalidData }
         return dto.toModel()
     }
-
-    func searchSummoner(name: String) async throws -> Summoner {
-        let api = try SearchSummonerAPI(name: name)
-        let data = try await client.fetch(from: api)
-        guard let dto = try? Mapper.map(from: data, to: SummonerDTO.self) else { throw HTTPError.invalidData }
-        return dto.toModel()
-    }
 }
