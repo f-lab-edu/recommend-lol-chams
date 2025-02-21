@@ -10,8 +10,8 @@ import SwiftUI
 struct SearchView: View {
     @StateObject private var viewModel: SearchViewModel
 
-    init() {
-        self._viewModel = StateObject(wrappedValue: SearchViewModel(summonerSearchApi: SummonerSearchService(client: LiveHTTPClient())))
+    init(viewModel: SearchViewModel) {
+        self.viewModel = SearchViewModel(summonerSearchApi: SearchService(client: LiveHTTPClient()))
     }
 
     var body: some View {
@@ -55,5 +55,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(viewModel: SearchViewModel(summonerSearchApi: MockSearchService()))
 }
