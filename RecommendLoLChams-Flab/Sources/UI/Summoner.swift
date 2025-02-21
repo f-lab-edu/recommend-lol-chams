@@ -7,9 +7,8 @@
 
 import Foundation
 
-// 소환사 모델 작성중...
-struct Summoner: Identifiable {
-    let id: UUID = UUID()
+// TODO: 소환사 모델 작성
+struct Summoner {
     let puuid: String
-    let name: String
+    let summonerLevel: Int
 }
