@@ -1,0 +1,19 @@
+// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+
+// periphery:ignore:all
+
+{% if catalogs %}
+import SwiftUI
+
+extension Color {
+    enum Palette {
+        {% for catalog in catalogs %}
+        {% for asset in catalog.assets %}
+        static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: Color = Color("{{asset.name}}")
+        {% endfor %}
+        {% endfor %}
+    }
+}
+{% else %}
+// Empty Colors
+{% endif %}
