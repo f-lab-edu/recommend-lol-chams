@@ -1,0 +1,6 @@
+xcassets:
+    inputs:
+        - ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/Colors.xcassets
+    outputs:
+        - templatePath: ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/colors-xcassets.stencil
+        output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Sources/Utils/Colors+Generated.swift
