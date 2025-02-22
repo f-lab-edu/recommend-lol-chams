@@ -19,7 +19,9 @@
 		33C3F89D2D3AA706008D1227 /* Exceptions for "RecommendLoLChams-Flab" folder in "RecommendLoLChams-Flab" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"SupportingFiles/colors-xcassets.stencil",
 				SupportingFiles/Info.plist,
+				SupportingFiles/swiftgen.yml,
 			);
 			target = 33C3F81F2D2D68D9008D1227 /* RecommendLoLChams-Flab */;
 		};
@@ -194,7 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# 1) Homebrew SwiftGen 위치 지정\nexport PATH=\"/opt/homebrew/bin:$PATH\"\n\necho \"==== Debug Info ====\"\necho \"PROJECT_DIR: ${PROJECT_DIR}\"\necho \"Contents of ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nls -l \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\n\n# 2) SwiftGen 실행\ncd \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles\"\nswiftgen config run --config swiftgen.yml\n";
+			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\necho \"PROJECT_DIR: ${PROJECT_DIR}\"\nswiftgen config run --config \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/swiftgen.yml\"\n";
 		};
 		33C3F90A2D599374008D1227 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
