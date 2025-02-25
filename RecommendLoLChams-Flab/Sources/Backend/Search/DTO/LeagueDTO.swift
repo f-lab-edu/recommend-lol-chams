@@ -13,16 +13,3 @@ struct LeagueDTO: Decodable {
     let wins: Int
     let loses: Int
 }
-
-extension LeagueDTO {
-    func toModel() -> League {
-        League(
-            leagueId: leagueId,
-            queueType: queueType,
-            tier: tier,
-            rank: rank,
-            wins: wins,
-            loses: loses
-        )
-    }
-}
