@@ -14,9 +14,3 @@ struct SummonerDTO: Decodable {
     let revisionDate: Int
     let summonerLevel: Int
 }
-
-extension SummonerDTO {
-    func toModel() -> Summoner {
-        return Summoner(puuid: puuid, summonerLevel: summonerLevel)
-    }
-}
