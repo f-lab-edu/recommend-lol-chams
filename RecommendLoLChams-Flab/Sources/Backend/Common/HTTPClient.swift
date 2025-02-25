@@ -19,12 +19,15 @@ struct LiveHTTPClient: HTTPClient {
         self.session = session
     }
     
+    // TODO: print -> OSLog 대치
     func fetch(from api: some RequestAPI) async throws -> Data {
         do {
             let urlRequest = try makeURLRequest(from: api)
             logRequest(urlRequest)
             let (data, response) = try await session.data(for: urlRequest)
             logResponse(url: urlRequest.url, data: data, response: response)
+            guard let response = response as? HTTPURLResponse else { throw HTTPError.invalidURLResponse }
+            guard 200..<300 ~= response.statusCode else { throw HTTPError.statusCode(response.statusCode) }
             return data
         } catch {
             logError(error)
