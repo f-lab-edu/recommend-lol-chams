@@ -11,10 +11,23 @@ struct MockSearchService: SearchSummonerUseCase {
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
-        return Summoner(puuid: "", summonerLevel: 1)
+        return Summoner(id: "", puuid: "", accountId: "", summonerLevel: 0)
     }
     
-    func searchSummoner(name: String) async throws -> Summoner {
-        return Summoner(puuid: "", summonerLevel: 1)
+    func getLeagues(summonerId: String) async throws -> [League] {
+        return [
+            League(
+                leagueId: "1",
+                queueType: .soloOrDuo,
+                tier: "",
+                rank: "",
+                wins: 0,
+                loses: 0
+            )
+        ]
+    }
+    
+    func isPlaying(puuid: String) async throws -> Bool {
+        return true
     }
 }

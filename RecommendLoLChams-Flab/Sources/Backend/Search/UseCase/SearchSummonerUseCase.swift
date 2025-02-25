@@ -9,4 +9,5 @@ protocol SearchSummonerUseCase {
     func getPuuid(gameName: String, tagLine: String) async throws -> String
     func searchSummoner(puuid: String) async throws -> Summoner
     func getLeagues(summonerId: String) async throws -> [League]
+    func isPlaying(puuid: String) async throws -> Bool
 }
