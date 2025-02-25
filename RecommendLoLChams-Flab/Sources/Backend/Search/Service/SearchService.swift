@@ -15,14 +15,35 @@ struct SearchService: SearchSummonerUseCase {
     func getPuuid(gameName: String, tagLine: String) async throws -> String {
         let api = try GetPuuidAPI(gameName: gameName, tagLine: tagLine)
         let data = try await client.fetch(from: api)
-        guard let dto = try? Mapper.map(from: data, to: PuuidDTO.self) else { throw HTTPError.invalidData }
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
         return dto.puuid
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
         let api = try SearchSummonerAPI(puuid: puuid)
         let data = try await client.fetch(from: api)
-        guard let dto = try? Mapper.map(from: data, to: SummonerDTO.self) else { throw HTTPError.invalidData }
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
         return dto.toModel()
+    }
+    
+    func getLeagues(summonerId: String) async throws -> [League] {
+        let api = try GetLeagueAPI(summonerId: summonerId)
+        let data = try await client.fetch(from: api)
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
+        return dto.toModel()
+    }
+}
+
+// MARK: - Modeling
+
+private extension SummonerDTO {
+    func toModel() -> Summoner {
+        Summoner(puuid: puuid, summonerLevel: summonerLevel)
+    }
+}
+
+private extension Array where Element == LeagueDTO {
+    func toModel() -> [League] {
+        compactMap({ $0.toModel() })
     }
 }
