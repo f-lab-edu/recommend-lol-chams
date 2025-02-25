@@ -21,3 +21,7 @@ protocol RequestAPI {
     var httpMethod: HTTPMethod { get }
     var parameter: Parameter? { get }
 }
+
+extension RequestAPI {
+    var response: Response.Type { Response.self }
+}
