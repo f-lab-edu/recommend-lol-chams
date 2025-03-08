@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3379EB412D7AFA4400BAAD8F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3379EB212D7AFA4400BAAD8F /* .swiftlint.yml */; };
 		33C3F86A2D2D866B008D1227 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F8692D2D866B008D1227 /* FirebaseCrashlytics */; };
 		33C3F86D2D2D86A4008D1227 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33C3F86C2D2D86A4008D1227 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3379EB212D7AFA4400BAAD8F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		33C3F8202D2D68D9008D1227 /* RecommendLoLChams-Flab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RecommendLoLChams-Flab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +56,7 @@
 		33C3F8172D2D68D9008D1227 = {
 			isa = PBXGroup;
 			children = (
+				3379EB212D7AFA4400BAAD8F /* .swiftlint.yml */,
 				33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */,
 				33C3F86B2D2D86A4008D1227 /* Frameworks */,
 				33C3F8212D2D68D9008D1227 /* Products */,
@@ -148,6 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3379EB412D7AFA4400BAAD8F /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +219,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n  echo \"success: SwiftLint installed\"\n  swiftlint lint --config \"${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n  echo \"success: SwiftLint installed\"\n  swiftlint lint --config \"${PROJECT_DIR}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
