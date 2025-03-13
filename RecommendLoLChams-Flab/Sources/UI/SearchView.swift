@@ -34,7 +34,7 @@ private struct SearchBar: View {
         HStack {
             Image(systemName: "magnifyingglass")
             
-            TextField("소환사 ID를 입력해 주세요", text: $viewModel.keyword)
+            TextField(L10n.SummonorSearch.searchbarPlaceholder.value, text: $viewModel.keyword)
             
             if !viewModel.keyword.isEmpty {
                 Button {
@@ -45,7 +45,7 @@ private struct SearchBar: View {
                 }
             }
             
-            Button("검색") {
+            Button(L10n.SummonorSearch.searchbarButtonTitle.value) {
                 viewModel.searchSummoner.send(viewModel.keyword)
             }
             .disabled(viewModel.keyword.isEmpty)
@@ -73,7 +73,7 @@ private struct ResultView: View {
                 Image(systemName: "exclamationmark.circle.fill")
                     .resizable()
                     .frame(width: 50, height: 50)
-                Text("해당되는 소환사가 없습니다!")
+                Text(L10n.SummonorSearch.empty.value)
                 Spacer()
             }
         }
