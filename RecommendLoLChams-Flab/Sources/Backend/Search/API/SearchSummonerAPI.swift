@@ -26,7 +26,7 @@ struct SearchSummonerAPI: RequestAPI {
     
     init(puuid: String) throws {
         guard let token = Config.riotApiKey else { throw EnvironmentError.emptyApiKey }
-        self.url = URL(string: "https://kr.api.riotgames.com/lol/summoner/v4/summoners/\(puuid)")
+        self.url = URL(string: "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/\(puuid)")
         self.headers = ["X-Riot-Token": token]
         self.httpMethod = .get
         self.parameter = nil
