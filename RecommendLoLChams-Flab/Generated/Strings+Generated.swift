@@ -15,6 +15,8 @@ enum L10n {
         static let searchbarPlaceholder: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.searchbar_placeholder")
         /// 게임중
         static let summonerPlaying: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.summoner_playing")
+        /// #%@
+        static let summonerTagline: LocalizableKey<LocalizableParameterCount1> = .init(key: "summoner_search.summoner_tagline")
     }
     enum Tab {
         /// 챔피언 추천
@@ -135,7 +137,8 @@ extension LocalizableKey where T == LocalizableParameterCount5 {
 
 private extension Text {
     static func localized(_ key: String, params: [String]) -> Text {
-        let paramterRemovedKey = key.replacingOccurrences(of: "%@", with: "")
+        let format = NSLocalizedString(key, tableName: "Localizable", bundle: Bundle(for: BundleToken.self), comment: "")
+        let paramterRemovedKey = format.replacingOccurrences(of: "%@", with: "")
         var interpolation = LocalizedStringKey.StringInterpolation(literalCapacity: paramterRemovedKey.count, interpolationCount: params.count)
         interpolation.appendLiteral(paramterRemovedKey)
         params.forEach { interpolation.appendInterpolation($0) }

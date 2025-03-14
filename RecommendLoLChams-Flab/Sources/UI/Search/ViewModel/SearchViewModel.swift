@@ -9,13 +9,13 @@ import Combine
 import Foundation
 
 final class SearchViewModel: ObservableObject {
+    @Published private(set) var isSearched: Bool = false
     @Published var keyword: String = ""
     @Published private(set) var summoner: Summoner?
 
-    private let summonerSearchApi: SearchSummonerUseCase
-    
-    let clearKeyword: PassthroughSubject<Void, Never> = .init()
-    let searchSummoner: PassthroughSubject<String, Never> = .init()
+    let summonerSearchApi: SearchSummonerUseCase
+    let clearKeyword: PassthroughSubject<Void, Never> = PassthroughSubject()
+    let searchSummoner: PassthroughSubject<String, Never> = PassthroughSubject()
     private var cancellables: Set<AnyCancellable> = []
 
     init(summonerSearchApi: SearchSummonerUseCase) {
@@ -43,12 +43,13 @@ final class SearchViewModel: ObservableObject {
                             return promise(.failure(ApplicationError.selfIsNil))
                         }
                         
-                        guard let (gameName, tagLine) = self.extract(from: keyword) else { return }
-                        
                         do {
+                            guard let (gameName, tagLine) = self.extract(from: keyword) else { return }
                             async let puuid = try await self.summonerSearchApi.getPuuid(gameName: gameName, tagLine: tagLine)
-                            let summoner = try await self.summonerSearchApi.searchSummoner(puuid: puuid)
-                            
+                            var summoner = try await self.summonerSearchApi.searchSummoner(puuid: puuid)
+                            summoner.gameName = gameName
+                            summoner.tagLine = tagLine
+                            await didSearch()
                             return promise(.success(summoner))
                         } catch {
                             return promise(.failure(error))
@@ -73,5 +74,10 @@ final class SearchViewModel: ObservableObject {
         let gameName = separated[0]
         let tagLine = separated[1]
         return (gameName, tagLine)
+    }
+    
+    @MainActor private func didSearch() {
+        guard !isSearched else { return }
+        isSearched = true
     }
 }

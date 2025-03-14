@@ -13,4 +13,6 @@ summoner_search.searchbar_placeholder = "플레이어 이름 + #KR1";
 summoner_search.searchbar_button_title = "검색";
 summoner_search.preview_title = "이제\n플레이어 이름 + 태그로\n전적을 검색하세요!";
 summoner_search.empty = "해당되는 소환사가 없습니다!";
+
+summoner_search.summoner_tagline = "#%@";
 summoner_search.summoner_playing = "게임중";

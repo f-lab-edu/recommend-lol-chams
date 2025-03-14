@@ -11,7 +11,7 @@ struct MockSearchService: SearchSummonerUseCase {
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
-        return Summoner(id: "", puuid: "", accountId: "", summonerLevel: 0)
+        return .mock
     }
     
     func getLeagues(summonerId: String) async throws -> [League] {
