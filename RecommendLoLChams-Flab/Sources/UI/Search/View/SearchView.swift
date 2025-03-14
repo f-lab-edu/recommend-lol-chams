@@ -41,7 +41,6 @@ private struct SearchBar: View {
                     viewModel.clearKeyword.send()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.lightGray)
                 }
             }
             
