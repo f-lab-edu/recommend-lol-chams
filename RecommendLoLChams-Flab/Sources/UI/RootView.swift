@@ -14,14 +14,14 @@ struct RootView: View {
                 .tabItem {
                     VStack {
                         Image(systemName: "magnifyingglass")
-                        Text("전적검색")
+                        L10n.Tab.searchScore.text
                     }
                 }
             RecommendView()
                 .tabItem {
                     VStack {
                         Image(systemName: "lasso.badge.sparkles")
-                        Text("챔피언 추천")
+                        L10n.Tab.recommendChampion.text
                     }
                 }
         }
