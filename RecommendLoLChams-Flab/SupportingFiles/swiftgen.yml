@@ -6,8 +6,17 @@ strings:
           output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Generated/Strings+Generated.swift
 
 xcassets:
-    inputs:
+-   inputs:
+        - ${PROJECT_DIR}/RecommendLoLChams-Flab/Resources/Assets.xcassets
+    outputs:
+        - templatePath: ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/SwiftgenTemplate/xcassets-swift5.stencil
+          output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Generated/Assets+Generated.swift
+    params:
+        allValues: true
+-   inputs:
         - ${PROJECT_DIR}/RecommendLoLChams-Flab/Resources/Colors.xcassets
     outputs:
         - templatePath: ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/SwiftgenTemplate/colors-xcassets.stencil
           output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Generated/Colors+Generated.swift
+    params:
+        allValues: true
