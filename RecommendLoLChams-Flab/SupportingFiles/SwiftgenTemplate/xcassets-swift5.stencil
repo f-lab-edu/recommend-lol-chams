@@ -436,4 +436,3 @@ private final class BundleToken {
 // No assets found
 {% endif %}
 // swiftlint:enable all
-

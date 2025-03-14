@@ -4,13 +4,17 @@
 import Foundation
 
 enum L10n {
-    enum SummonorSearch {
+    enum SummonerSearch {
         /// 해당되는 소환사가 없습니다!
-        static let empty: LocalizableKey<LocalizableParameterCount0> = .init(key: "summonor_search.empty")
+        static let empty: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.empty")
+        /// 이제\n플레이어 이름 + 태그로\n전적을 검색하세요!
+        static let previewTitle: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.preview_title")
         /// 검색
-        static let searchbarButtonTitle: LocalizableKey<LocalizableParameterCount0> = .init(key: "summonor_search.searchbar_button_title")
-        /// 소환사 ID를 입력해 주세요
-        static let searchbarPlaceholder: LocalizableKey<LocalizableParameterCount0> = .init(key: "summonor_search.searchbar_placeholder")
+        static let searchbarButtonTitle: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.searchbar_button_title")
+        /// 플레이어 이름 + #KR1
+        static let searchbarPlaceholder: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.searchbar_placeholder")
+        /// 게임중
+        static let summonerPlaying: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.summoner_playing")
     }
     enum Tab {
         /// 챔피언 추천
