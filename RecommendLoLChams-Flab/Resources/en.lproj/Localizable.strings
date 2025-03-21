@@ -5,3 +5,10 @@
   Created by 김혜지 on 3/8/25.
   
 */
+
+tab.search_score = "Search";
+tab.recommend_champion = "Recommendation";
+
+summonor_search.searchbar_placeholder = "Enter your Summoner ID";
+summonor_search.searchbar_button_title = "search";
+summonor_search.empty = "Summoner not found!";
