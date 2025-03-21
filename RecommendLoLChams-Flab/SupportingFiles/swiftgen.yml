@@ -1,13 +1,13 @@
 strings:
     inputs:
-        - ${PROJECT_DIR}/RecommendLoLChams-Flab/Resources/ko.lproj
+        - ${PROJECT_DIR}/RecommendLoLChams-Flab/Resources/Localizables/ko.lproj
     outputs:
         - templatePath: ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/SwiftgenTemplate/localizable-keys.stencil
-          output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Sources/Generated/Strings+Generated.swift
+          output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Generated/Strings+Generated.swift
 
 xcassets:
     inputs:
         - ${PROJECT_DIR}/RecommendLoLChams-Flab/Resources/Colors.xcassets
     outputs:
         - templatePath: ${PROJECT_DIR}/RecommendLoLChams-Flab/SupportingFiles/SwiftgenTemplate/colors-xcassets.stencil
-          output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Sources/Generated/Colors+Generated.swift
+          output: ${PROJECT_DIR}/RecommendLoLChams-Flab/Generated/Colors+Generated.swift
