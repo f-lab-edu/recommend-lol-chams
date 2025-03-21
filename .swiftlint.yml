@@ -1,3 +1,7 @@
+# 규칙에 포함할 파일들
+included:
+    - ${PROJECT_DIR}/RecommendLoLChams-Flab/Sources
+
 # 실행에서 제외할 디폴트규칙
 disabled_rules:
     - trailing_whitespace # 행 끝의 공백
@@ -48,7 +52,3 @@ opt_in_rules:
 cyclomatic_complexity:
     warning: 2    # 복잡도가 2를 초과할 경우 경고
     error: 5      # 복잡도가 5를 초과할 경우 에러
-
-# 규칙에 포함할 파일들
-included:
-    - ${PROJECT_DIR}/RecommendLoLChams-Flab
