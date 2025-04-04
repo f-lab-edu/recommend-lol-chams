@@ -43,10 +43,8 @@ opt_in_rules:
     - toggle_bool
     - trailing_closure
     - unneeded_parentheses_in_closure_argument
-    - unused_import
     - vertical_whitespace_closing_braces
     - yoda_condition
-    - unused_capture_list
 
 # 함수의 복잡성(조건문, 반복문 등의 중첩)를 제한합니다
 cyclomatic_complexity:
