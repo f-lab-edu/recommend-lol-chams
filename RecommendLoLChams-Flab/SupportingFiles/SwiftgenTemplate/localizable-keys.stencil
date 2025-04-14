@@ -1,0 +1,157 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
+import Foundation
+
+{% macro argumentsBlock types %}{% filter removeNewlines:"leading" %}
+  {% for type in types %}
+    {% if type == "UnsafeRawPointer" %}
+    Int(bitPattern: p{{forloop.counter}})
+    {% else %}
+    p{{forloop.counter}}
+    {% endif %}
+    {{ ", " if not forloop.last }}
+  {% endfor %}
+{% endfilter %}{% endmacro %}
+{% macro recursiveBlock table item %}
+    {% for string in item.strings %}
+    {% if not param.noComments %}
+    /// {{string.translation}}
+    {% endif %}
+    {% if string.types %}
+    static let {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: LocalizableKey<LocalizableParameterCount{{string.types.count}}> = .init(key: "{{string.key}}")
+    {% else %}
+    static let {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: LocalizableKey<LocalizableParameterCount0> = .init(key: "{{string.key}}")
+    {% endif %}
+    {% endfor %}
+    {% for child in item.children %}
+    enum {{child.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+      {% filter indent:4 %}{% call recursiveBlock table child %}{% endfilter %}
+    }
+    {% endfor %}
+{% endmacro %}
+{% set enumName %}{{param.enumName|default:"L10n"}}{% endset %}
+enum L10n {
+    {% call recursiveBlock tables.first.name tables.first.levels %}
+}
+
+protocol LocalizableParameterCount {}
+
+struct LocalizableParameterCount0: LocalizableParameterCount {}
+struct LocalizableParameterCount1: LocalizableParameterCount {}
+struct LocalizableParameterCount2: LocalizableParameterCount {}
+struct LocalizableParameterCount3: LocalizableParameterCount {}
+struct LocalizableParameterCount4: LocalizableParameterCount {}
+struct LocalizableParameterCount5: LocalizableParameterCount {}
+
+struct LocalizableKey<T: LocalizableParameterCount> {
+    let key: String
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount0 {
+    var value: String {
+        return L10n.tr(key)
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount1 {
+    func value(_ p0: String) -> String {
+        return L10n.tr(key, p0)
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount2 {
+    func value(_ p0: String, _ p1: String) -> String {
+        return L10n.tr(key, p0, p1)
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount3 {
+    func value(_ p0: String, _ p1: String, _ p2: String) -> String {
+        return L10n.tr(key, p0, p1, p2)
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount4 {
+    func value(_ p0: String, _ p1: String, _ p2: String, _ p3: String) -> String {
+        return L10n.tr(key, p0, p1, p2, p3)
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount5 {
+    func value(_ p0: String, _ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
+        return L10n.tr(key, p0, p1, p2, p3, p4)
+    }
+}
+
+extension L10n {
+    static func tr(_ key: String, _ args: CVarArg...) -> String {
+        let format = NSLocalizedString(key, tableName: "Localizable", bundle: Bundle(for: BundleToken.self), comment: "")
+        return String(format: format, locale: Locale.current, arguments: args)
+    }
+}
+
+private final class BundleToken {}
+
+import struct SwiftUI.Text
+import struct SwiftUI.LocalizedStringKey
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount0 {
+    var text: Text {
+        return Text(.init(stringLiteral: key), tableName: "Localizable", bundle: Bundle(for: BundleToken.self))
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount1 {
+    func text(_ p0: String) -> Text {
+        return Text.localized(key, params: [p0])
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount2 {
+    func text(_ p0: String, _ p1: String) -> Text {
+        return Text.localized(key, params: [p0, p1])
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount3 {
+    func text(_ p0: String, _ p1: String, _ p2: String) -> Text {
+        return Text.localized(key, params: [p0, p1, p2])
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount4 {
+    func text(_ p0: String, _ p1: String, _ p2: String, _ p3: String) -> Text {
+        return Text.localized(key, params: [p0, p1, p2, p3])
+    }
+}
+
+// periphery:ignore
+extension LocalizableKey where T == LocalizableParameterCount5 {
+    func text(_ p0: String, _ p1: String, _ p2: String, _ p3: String, _ p4: String) -> Text {
+        return Text.localized(key, params: [p0, p1, p2, p3, p4])
+    }
+}
+
+private extension Text {
+    static func localized(_ key: String, params: [String]) -> Text {
+        let paramterRemovedKey = key.replacingOccurrences(of: "%@", with: "")
+        var interpolation = LocalizedStringKey.StringInterpolation(literalCapacity: paramterRemovedKey.count, interpolationCount: params.count)
+        interpolation.appendLiteral(paramterRemovedKey)
+        params.forEach { interpolation.appendInterpolation($0) }
+        return Text(.init(stringInterpolation: interpolation), tableName: "Localizable", bundle: Bundle(for: BundleToken.self))
+    }
+}
+
+// swiftlint:enable all

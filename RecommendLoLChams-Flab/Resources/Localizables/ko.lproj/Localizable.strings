@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  RecommendLoLChams-Flab
+
+  Created by 김혜지 on 3/8/25.
+  
+*/
+
+tab.search_score = "전적검색";
+tab.recommend_champion = "챔피언 추천";
+
+summonor_search.searchbar_placeholder = "소환사 ID를 입력해 주세요";
+summonor_search.searchbar_button_title = "검색";
+summonor_search.empty = "해당되는 소환사가 없습니다!";
