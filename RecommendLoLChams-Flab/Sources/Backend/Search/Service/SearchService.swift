@@ -20,7 +20,14 @@ struct SearchService: SearchSummonerUseCase {
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
-        let api = try SearchSummonerAPI(puuid: puuid)
+        let api = try GetSummonerAPI(puuid: puuid)
+        let data = try await client.fetch(from: api)
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
+        return dto.toModel()
+    }
+    
+    func searchRank(summonerId: String) async throws -> [Rank] {
+        let api = try GetRankAPI(summonerId: summonerId)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
         return dto.toModel()
@@ -75,6 +82,28 @@ private extension LeagueDTO {
 
 private extension Array where Element == LeagueDTO {
     func toModel() -> [League] {
+        compactMap({ $0.toModel() })
+    }
+}
+
+private extension RankDTO {
+    func toModel() -> Rank? {
+        guard let tier = Tier(rawValue: tier.lowercased()),
+              let rank = RankNum(rawValue: rank.lowercased()),
+              let queue = Queue(rawValue: queueType) else { return nil }
+        return Rank(
+            tier: tier,
+            rank: rank,
+            queue: queue,
+            wins: wins,
+            loses: loses,
+            isHotStreak: hotStreak
+        )
+    }
+}
+
+private extension Array where Element == RankDTO {
+    func toModel() -> [Rank] {
         compactMap({ $0.toModel() })
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SearchSummonerAPI.swift
+//  GetSummonerAPI.swift
 //  RecommendLoLChams-Flab
 //
 //  Created by 김혜지 on 2/15/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchSummonerAPI: RequestAPI {
+struct GetSummonerAPI: RequestAPI {
     typealias Parameter = EmptyParameter
     typealias Response = SummonerDTO
         
