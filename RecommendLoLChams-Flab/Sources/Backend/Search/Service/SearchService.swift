@@ -12,7 +12,7 @@ struct SearchService: SearchSummonerUseCase {
         self.client = client
     }
     
-    func getPuuid(gameName: String, tagLine: String) async throws -> String {
+    func fetchPuuid(gameName: String, tagLine: String) async throws -> String {
         let api = try GetPuuidAPI(gameName: gameName, tagLine: tagLine)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
@@ -26,14 +26,14 @@ struct SearchService: SearchSummonerUseCase {
         return dto.toModel()
     }
     
-    func searchRank(summonerId: String) async throws -> [Rank] {
+    func fetchRank(summonerId: String) async throws -> [Rank] {
         let api = try GetRankAPI(summonerId: summonerId)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
         return dto.toModel()
     }
     
-    func getLeagues(summonerId: String) async throws -> [League] {
+    func fetchLeagues(summonerId: String) async throws -> [League] {
         let api = try GetLeagueAPI(summonerId: summonerId)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }

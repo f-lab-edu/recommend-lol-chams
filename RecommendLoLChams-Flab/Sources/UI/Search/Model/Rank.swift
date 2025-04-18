@@ -5,6 +5,8 @@
 //  Created by 김혜지 on 4/18/25.
 //
 
+// swiftlint:disable all
+
 import Foundation
 
 struct Rank: Identifiable {
@@ -46,3 +48,5 @@ enum Queue: String, CustomStringConvertible {
         }
     }
 }
+
+// swiftlint:enable all
