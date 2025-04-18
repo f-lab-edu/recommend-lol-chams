@@ -6,7 +6,7 @@
 //
 
 struct MockSearchService: SearchSummonerUseCase {
-    func getPuuid(gameName: String, tagLine: String) async throws -> String {
+    func fetchPuuid(gameName: String, tagLine: String) async throws -> String {
         return ""
     }
     
@@ -14,7 +14,20 @@ struct MockSearchService: SearchSummonerUseCase {
         return Summoner(id: "", puuid: "", accountId: "", summonerLevel: 0)
     }
     
-    func getLeagues(summonerId: String) async throws -> [League] {
+    func fetchRank(summonerId: String) async throws -> [Rank] {
+        return [
+            Rank(
+                tier: .bronze,
+                rank: .i,
+                queue: .solo5x5,
+                wins: 1,
+                loses: 4,
+                isHotStreak: false
+            )
+        ]
+    }
+    
+    func fetchLeagues(summonerId: String) async throws -> [League] {
         return [
             League(
                 leagueId: "1",
