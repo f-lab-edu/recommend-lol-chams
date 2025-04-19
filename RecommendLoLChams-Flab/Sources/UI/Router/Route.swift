@@ -8,15 +8,15 @@
 import SwiftUI
 
 enum Route: Hashable {
-    case record // 상세 전적
+    case summonerDetail(profile: Profile)
 }
 
 extension Route {
     @ViewBuilder
     func view() -> some View {
         switch self {
-        case .record:
-            EmptyView()
+        case .summonerDetail(let profile):
+            SummonerDetailView(profile: profile)
         }
     }
 }

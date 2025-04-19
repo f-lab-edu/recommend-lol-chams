@@ -8,6 +8,8 @@
 import Foundation
 
 final class Router: ObservableObject {
+    static let shared = Router()
+    
     @Published var path: [Route] = []
     
     init() {}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Summoner {
+struct Summoner: Hashable {
     var gameName: String = ""
     var tagLine: String = ""
     let id: String

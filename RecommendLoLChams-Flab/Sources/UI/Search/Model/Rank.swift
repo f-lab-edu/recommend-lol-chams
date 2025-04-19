@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Rank: Identifiable {
+struct Rank: Identifiable, Hashable {
     let id = UUID()
     let tier: Tier
     let rank: RankNum
