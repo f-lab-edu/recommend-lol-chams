@@ -5,7 +5,7 @@
 //  Created by 김혜지 on 4/19/25.
 //
 
-struct Profile {
+struct Profile: Hashable {
     let summoner: Summoner
     let ranks: [Rank]
 }

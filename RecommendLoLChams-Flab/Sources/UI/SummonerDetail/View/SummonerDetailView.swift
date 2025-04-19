@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct SummonerDetailView: View {
-    private let profile: Profile = .mock
+    private let profile: Profile
+    
+    init(profile: Profile) {
+        self.profile = profile
+    }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                BasicInfoView()
+                BasicInfoView(profile: profile)
                 PositionView()
             }
             .padding(.horizontal, 20)
@@ -22,8 +26,12 @@ struct SummonerDetailView: View {
 }
 
 private struct BasicInfoView: View {
-    private let profile: Profile = .mock
+    private let profile: Profile
     private let isPlaying: Bool = true
+    
+    init(profile: Profile) {
+        self.profile = profile
+    }
     
     var body: some View {
         HStack(alignment: .center, spacing: 20) {
@@ -81,5 +89,5 @@ private struct PositionView: View {
 }
 
 #Preview {
-    SummonerDetailView()
+    SummonerDetailView(profile: .mock)
 }
