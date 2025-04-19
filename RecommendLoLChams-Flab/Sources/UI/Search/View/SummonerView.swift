@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct SummonerView: View {
-    @ObservedObject var viewModel: SummonerViewModel
+    private let profile: Profile
     
-    init(viewModel: SummonerViewModel) {
-        self.viewModel = viewModel
+    init(profile: Profile) {
+        self.profile = profile
     }
     
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 20) {
-                AsyncImage(url: viewModel.profile.summoner.profileImageURL) { image in
+                AsyncImage(url: profile.summoner.profileImageURL) { image in
                     image
                         .resizable()
                         .scaledToFit()
@@ -29,33 +29,21 @@ struct SummonerView: View {
                 
                 VStack(alignment: .leading) {
                     HStack(spacing: 5) {
-                        Text(viewModel.profile.summoner.gameName)
+                        Text(profile.summoner.gameName)
                             .font(.system(size: 20, weight: .bold))
                             .foregroundStyle(Color.Palette.gray3)
-                        L10n.SummonerSearch.summonerTagline.text(viewModel.profile.summoner.tagLine)
+                        L10n.SummonerSearch.summonerTagline.text(profile.summoner.tagLine)
                             .font(.system(size: 20, weight: .bold))
                             .foregroundStyle(Color.Palette.gray3)
                     }
                 }
                 
                 Spacer()
-                
-                Group {
-                    if viewModel.isPlaying {
-                        Circle()
-                            .foregroundStyle(Color.Palette.green)
-                    } else {
-                        Circle()
-                            .stroke(lineWidth: 1)
-                            .foregroundStyle(Color.Palette.gray1)
-                    }
-                }
-                .frame(width: 14, height: 14)
             }
             .padding(.horizontal, 20)
             
             VStack {
-                ForEach(viewModel.profile.ranks) { rank in
+                ForEach(profile.ranks) { rank in
                     VStack(alignment: .leading) {
                         Text(rank.queue.description)
                             .font(.system(size: 16, weight: .bold))
@@ -87,26 +75,9 @@ struct SummonerView: View {
             .background(Color.Palette.gray02)
             Spacer()
         }
-        .onAppear {
-            viewModel.checkPlaying.send()
-        }
-    }
-    
-    private struct ProfilePlaceholder: View {
-        init() {}
-        
-        var body: some View {
-            ZStack {
-                Color.Palette.gray1
-                Image(asset: Asset.imageSearchProfilePlaceholder)
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.horizontal, 15)
-            }
-        }
     }
 }
 
 #Preview {
-    SummonerView(viewModel: SummonerViewModel(summonerSearchApi: MockSearchService(), profile: .mock))
+    SummonerView(profile: .mock)
 }

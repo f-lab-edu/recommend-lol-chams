@@ -4,6 +4,14 @@
 import Foundation
 
 enum L10n {
+    enum SummonerDetail {
+        enum PreferPosition {
+            /// Top %@.
+            static let rank: LocalizableKey<LocalizableParameterCount1> = .init(key: "summoner_detail.prefer_position.rank")
+            /// 선호 포지션
+            static let title: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_detail.prefer_position.title")
+        }
+    }
     enum SummonerSearch {
         /// 해당되는 소환사가 없습니다!
         static let empty: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.empty")
