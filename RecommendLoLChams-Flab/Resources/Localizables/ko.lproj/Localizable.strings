@@ -16,3 +16,9 @@ summoner_search.empty = "해당되는 소환사가 없습니다!";
 
 summoner_search.summoner_tagline = "#%@";
 summoner_search.summoner_playing = "게임중";
+summoner_search.summoner_wins = "승 : %@";
+summoner_search.summoner_loses = "패 : %@";
+summoner_search.summoner_ishotstreak = "연승중🔥";
+
+summoner_detail.prefer_position.title = "선호 포지션";
+summoner_detail.prefer_position.rank = "Top %@.";

@@ -6,6 +6,7 @@ included:
 disabled_rules:
     - trailing_whitespace # 행 끝의 공백
     - blanket_disable_command
+    - identifier_name
     
 # 선택적으로 적용할 규칙
 opt_in_rules:

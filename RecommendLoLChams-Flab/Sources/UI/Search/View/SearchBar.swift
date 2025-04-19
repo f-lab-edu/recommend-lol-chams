@@ -41,5 +41,6 @@ struct SearchBar: View {
             .disabled(viewModel.keyword.isEmpty)
             .tint(Color.Palette.blue5)
         }
+        .padding()
     }
 }

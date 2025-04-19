@@ -61,7 +61,7 @@ private extension SummonerDTO {
             id: id,
             puuid: puuid,
             accountId: accountId,
-            summonerLevel: summonerLevel
+            profileIconId: 0
         )
     }
 }

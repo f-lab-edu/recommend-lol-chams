@@ -10,16 +10,16 @@ import Foundation
 
 final class SummonerViewModel: ObservableObject {
     @Published private(set) var isPlaying: Bool = false
-    let info: Summoner
+    let profile: Profile
     
     private let summonerSearchApi: SearchSummonerUseCase
     
     let checkPlaying: PassthroughSubject<Void, Never> = PassthroughSubject()
     private var cancellables: Set<AnyCancellable> = []
     
-    init(summonerSearchApi: SearchSummonerUseCase, info: Summoner) {
+    init(summonerSearchApi: SearchSummonerUseCase, profile: Profile) {
         self.summonerSearchApi = summonerSearchApi
-        self.info = info
+        self.profile = profile
         bind()
     }
     
@@ -33,8 +33,8 @@ final class SummonerViewModel: ObservableObject {
                         }
                         
                         do {
-                            guard !info.puuid.isEmpty else { return }
-                            async let isPlaying = try await self.summonerSearchApi.isPlaying(puuid: info.puuid)
+                            guard !profile.summoner.puuid.isEmpty else { return }
+                            async let isPlaying = try await self.summonerSearchApi.isPlaying(puuid: profile.summoner.puuid)
                             return promise(.success(try await isPlaying))
                         } catch {
                             return promise(.failure(error))

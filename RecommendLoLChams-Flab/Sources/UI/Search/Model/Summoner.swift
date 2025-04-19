@@ -13,10 +13,9 @@ struct Summoner {
     let id: String
     let puuid: String
     let accountId: String
-    let summonerLevel: Int
     let profileIconId: Int
     var profileImageURL: URL? {
-        let urlString = "http://ddragon.leagueoflegends.com/cdn/10.11.1/img/profileicon/\(profileIconId).png"
+        let urlString = "https://ddragon.leagueoflegends.com/cdn/10.11.1/img/profileicon/\(profileIconId).png"
         return URL(string: urlString)
     }
     
@@ -25,12 +24,11 @@ struct Summoner {
 
 extension Summoner {
     static let mock: Summoner = Summoner(
-        gameName: "김덕배",
-        tagLine: "#5066",
+        gameName: "갈팡질팡바드",
+        tagLine: "KR11",
         id: "",
         puuid: "",
         accountId: "",
-        summonerLevel: 10,
-        profileIconId: 29
+        profileIconId: 1437
     )
 }
