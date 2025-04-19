@@ -22,6 +22,16 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let icBronze = ImageAsset(name: "ic_bronze")
+  internal static let icChallenger = ImageAsset(name: "ic_challenger")
+  internal static let icDiamond = ImageAsset(name: "ic_diamond")
+  internal static let icEmerald = ImageAsset(name: "ic_emerald")
+  internal static let icGold = ImageAsset(name: "ic_gold")
+  internal static let icGrandmaster = ImageAsset(name: "ic_grandmaster")
+  internal static let icIron = ImageAsset(name: "ic_iron")
+  internal static let icMaster = ImageAsset(name: "ic_master")
+  internal static let icPlatinum = ImageAsset(name: "ic_platinum")
+  internal static let icSilver = ImageAsset(name: "ic_silver")
   internal static let iconClear = ImageAsset(name: "icon_clear")
   internal static let iconSearch = ImageAsset(name: "icon_search")
   internal static let imageSearchEmpty = ImageAsset(name: "image_search_empty")

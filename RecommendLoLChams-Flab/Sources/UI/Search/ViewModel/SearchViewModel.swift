@@ -12,6 +12,7 @@ final class SearchViewModel: ObservableObject {
     @Published private(set) var isSearched: Bool = false
     @Published var keyword: String = ""
     @Published private(set) var summoner: Summoner?
+    @Published private(set) var ranks: [Rank] = []
 
     let summonerSearchApi: SearchSummonerUseCase
     let clearKeyword: PassthroughSubject<Void, Never> = PassthroughSubject()
@@ -26,45 +27,28 @@ final class SearchViewModel: ObservableObject {
     private func bind() {
         clearKeyword
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                Task { @MainActor [weak self] in
-                    guard let self else { return }
-                    self.keyword = ""
+            .sink { [weak self] _ in
+                Task { @MainActor  in
+                    self?.keyword = ""
                 }
             }
             .store(in: &cancellables)
         
         searchSummoner
             .filter { !$0.isEmpty }
-            .flatMap { keyword in
-                Future<Summoner?, Error> { promise in
-                    Task { [weak self] in
-                        guard let self else {
-                            return promise(.failure(ApplicationError.selfIsNil))
-                        }
-                        
-                        do {
-                            guard let (gameName, tagLine) = self.extract(from: keyword) else { return }
-                            async let puuid = try await self.summonerSearchApi.getPuuid(gameName: gameName, tagLine: tagLine)
-                            var summoner = try await self.summonerSearchApi.searchSummoner(puuid: puuid)
-                            summoner.gameName = gameName
-                            summoner.tagLine = tagLine
-                            await didSearch()
-                            return promise(.success(summoner))
-                        } catch {
-                            return promise(.failure(error))
-                        }
-                    }
-                }
-            }
-            .replaceError(with: nil)
+            .flatMap(maxPublishers: .max(1), fetchPuuid(keyword:))
+            .flatMap(maxPublishers: .max(1), searchSummoner(puuid:))
+            .flatMap(maxPublishers: .max(1), fetchRanks(summoner:))
             .receive(on: DispatchQueue.main)
-            .sink { result in
-                Task { @MainActor [weak self] in
-                    guard let self else { return }
-                    self.summoner = result
+            .sink(receiveCompletion: { completion in
+                
+            }, receiveValue: { [weak self] profile in
+                Task { @MainActor in
+                    self?.summoner = profile.summoner
+                    self?.ranks = profile.ranks
+                    self?.didSearch()
                 }
-            }
+            })
             .store(in: &cancellables)
     }
     
@@ -79,5 +63,55 @@ final class SearchViewModel: ObservableObject {
     @MainActor private func didSearch() {
         guard !isSearched else { return }
         isSearched = true
+    }
+    
+    private func fetchPuuid(keyword: String) -> AnyPublisher<String, Error> {
+        Deferred {
+            Future { promise in
+                Task {
+                    do {
+                        guard let (gameName, tagLine) = self.extract(from: keyword) else { return }
+                        let puuid = try await self.summonerSearchApi.fetchPuuid(gameName: gameName, tagLine: tagLine)
+                        promise(.success(puuid))
+                    } catch {
+                        promise(.failure(error))
+                    }
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    private func searchSummoner(puuid: String) -> AnyPublisher<Summoner, Error> {
+        Deferred {
+            Future { promise in
+                Task {
+                    do {
+                        let summoner = try await self.summonerSearchApi.searchSummoner(puuid: puuid)
+                        promise(.success(summoner))
+                    } catch {
+                        promise(.failure(error))
+                    }
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    private func fetchRanks(summoner: Summoner) -> AnyPublisher<Profile, Error> {
+        Deferred {
+            Future { promise in
+                Task {
+                    do {
+                        let ranks = try await self.summonerSearchApi.fetchRank(summonerId: summoner.id)
+                        let profile = Profile(summoner: summoner, ranks: ranks)
+                        promise(.success(profile))
+                    } catch {
+                        promise(.failure(error))
+                    }
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

@@ -12,7 +12,7 @@ struct SearchService: SearchSummonerUseCase {
         self.client = client
     }
     
-    func getPuuid(gameName: String, tagLine: String) async throws -> String {
+    func fetchPuuid(gameName: String, tagLine: String) async throws -> String {
         let api = try GetPuuidAPI(gameName: gameName, tagLine: tagLine)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
@@ -20,13 +20,20 @@ struct SearchService: SearchSummonerUseCase {
     }
     
     func searchSummoner(puuid: String) async throws -> Summoner {
-        let api = try SearchSummonerAPI(puuid: puuid)
+        let api = try GetSummonerAPI(puuid: puuid)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
         return dto.toModel()
     }
     
-    func getLeagues(summonerId: String) async throws -> [League] {
+    func fetchRank(summonerId: String) async throws -> [Rank] {
+        let api = try GetRankAPI(summonerId: summonerId)
+        let data = try await client.fetch(from: api)
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
+        return dto.toModel()
+    }
+    
+    func fetchLeagues(summonerId: String) async throws -> [League] {
         let api = try GetLeagueAPI(summonerId: summonerId)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
@@ -54,8 +61,7 @@ private extension SummonerDTO {
             id: id,
             puuid: puuid,
             accountId: accountId,
-            summonerLevel: summonerLevel,
-            profileIconId: profileIconId
+            summonerLevel: summonerLevel
         )
     }
 }
@@ -76,6 +82,28 @@ private extension LeagueDTO {
 
 private extension Array where Element == LeagueDTO {
     func toModel() -> [League] {
+        compactMap({ $0.toModel() })
+    }
+}
+
+private extension RankDTO {
+    func toModel() -> Rank? {
+        guard let tier = Tier(rawValue: tier.lowercased()),
+              let rank = RankNum(rawValue: rank.lowercased()),
+              let queue = Queue(rawValue: queueType) else { return nil }
+        return Rank(
+            tier: tier,
+            rank: rank,
+            queue: queue,
+            wins: wins,
+            loses: loses,
+            isHotStreak: hotStreak
+        )
+    }
+}
+
+private extension Array where Element == RankDTO {
+    func toModel() -> [Rank] {
         compactMap({ $0.toModel() })
     }
 }
