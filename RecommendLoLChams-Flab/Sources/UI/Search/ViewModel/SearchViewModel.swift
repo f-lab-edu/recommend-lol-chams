@@ -11,8 +11,7 @@ import Foundation
 final class SearchViewModel: ObservableObject {
     @Published private(set) var isSearched: Bool = false
     @Published var keyword: String = ""
-    @Published private(set) var summoner: Summoner?
-    @Published private(set) var ranks: [Rank] = []
+    @Published private(set) var profile: Profile?
 
     let summonerSearchApi: SearchSummonerUseCase
     let clearKeyword: PassthroughSubject<Void, Never> = PassthroughSubject()
@@ -44,8 +43,7 @@ final class SearchViewModel: ObservableObject {
                 
             }, receiveValue: { [weak self] profile in
                 Task { @MainActor in
-                    self?.summoner = profile.summoner
-                    self?.ranks = profile.ranks
+                    self?.profile = profile
                     self?.didSearch()
                 }
             })

@@ -9,3 +9,10 @@ struct Profile {
     let summoner: Summoner
     let ranks: [Rank]
 }
+
+extension Profile {
+    static let mock = Profile(
+        summoner: .mock,
+        ranks: [.soloMock, .flexMock]
+    )
+}

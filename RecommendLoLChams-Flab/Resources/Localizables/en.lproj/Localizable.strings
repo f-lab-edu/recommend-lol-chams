@@ -12,3 +12,9 @@ tab.recommend_champion = "Recommendation";
 summonor_search.searchbar_placeholder = "Enter your Summoner ID";
 summonor_search.searchbar_button_title = "search";
 summonor_search.empty = "Summoner not found!";
+
+summoner_search.summoner_tagline = "#%@";
+summoner_search.summoner_playing = "playing";
+summoner_search.summoner_wins = "win : %@";
+summoner_search.summoner_loses = "lose : %@";
+summoner_search.summoner_ishotstreak = "HotStreak🔥";

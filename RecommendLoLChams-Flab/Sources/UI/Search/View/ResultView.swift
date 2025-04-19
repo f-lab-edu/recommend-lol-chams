@@ -15,8 +15,8 @@ struct ResultView: View {
     }
     
     var body: some View {
-        if let summoner = viewModel.summoner {
-            SummonerView(viewModel: SummonerViewModel(summonerSearchApi: viewModel.summonerSearchApi, info: summoner))
+        if let profile = viewModel.profile {
+            SummonerView(viewModel: SummonerViewModel(summonerSearchApi: viewModel.summonerSearchApi, profile: profile))
         } else {
             EmptyView()
         }

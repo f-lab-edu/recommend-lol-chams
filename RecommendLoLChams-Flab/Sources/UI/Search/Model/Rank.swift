@@ -27,6 +27,29 @@ enum Tier: String {
     case master
     case grandmaster
     case challenger
+    
+    var imageAsset: ImageAsset {
+        switch self {
+        case .iron:
+            Asset.icIron
+        case .bronze:
+            Asset.icBronze
+        case .silver:
+            Asset.icSilver
+        case .gold:
+            Asset.icGold
+        case .platinum:
+            Asset.icPlatinum
+        case .diamond:
+            Asset.icDiamond
+        case .master:
+            Asset.icMaster
+        case .grandmaster:
+            Asset.icGrandmaster
+        case .challenger:
+            Asset.icChallenger
+        }
+    }
 }
 
 enum RankNum: String {
@@ -45,4 +68,9 @@ enum Queue: String, CustomStringConvertible {
             "자유 랭크 솔로/듀오"
         }
     }
+}
+
+extension Rank {
+    static let soloMock = Rank(tier: .challenger, rank: .i, queue: .solo5x5, wins: 30, loses: 1, isHotStreak: true)
+    static let flexMock = Rank(tier: .challenger, rank: .iii, queue: .flexSr, wins: 24, loses: 3, isHotStreak: true)
 }

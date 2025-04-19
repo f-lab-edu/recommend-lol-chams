@@ -13,10 +13,16 @@ enum L10n {
         static let searchbarButtonTitle: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.searchbar_button_title")
         /// 플레이어 이름 + #KR1
         static let searchbarPlaceholder: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.searchbar_placeholder")
+        /// 연승중🔥
+        static let summonerIshotstreak: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.summoner_ishotstreak")
+        /// 패 : %@
+        static let summonerLoses: LocalizableKey<LocalizableParameterCount1> = .init(key: "summoner_search.summoner_loses")
         /// 게임중
         static let summonerPlaying: LocalizableKey<LocalizableParameterCount0> = .init(key: "summoner_search.summoner_playing")
         /// #%@
         static let summonerTagline: LocalizableKey<LocalizableParameterCount1> = .init(key: "summoner_search.summoner_tagline")
+        /// 승 : %@
+        static let summonerWins: LocalizableKey<LocalizableParameterCount1> = .init(key: "summoner_search.summoner_wins")
     }
     enum Tab {
         /// 챔피언 추천
