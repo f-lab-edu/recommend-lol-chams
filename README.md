@@ -1,22 +1,30 @@
-# 성향에 따른 롤 챔피언 추천
+# 롤챔추천
 
-## 첫번째 탭
+롤 전적검색과 전적 데이터 기반으로 챔피언을 추천해주는 OpenAI 활용 서비스입니다.
 
-1. 검색창을 통해 소환사 ID를 검색한다.
-2. Riot API를 호출하여 일치하는 소환사 ID의 전적이 있다면, 전적 정보를 그려준다.
+## 핵심 기능
 
-## 두번째 탭
+- 롤 전적 조회
+- 전적 데이터 기반 챔피언 추천
 
-1. 정의된 성향 키워드 리스트를 dynamic grid로 그려준다.
-2. 키워드들을 선택하고 챔피언 추천받기 동작을 실행한다.
-3. open ai API를 호출하여 선택한 성향 키워드들을 기반으로 롤 챔피언을 추천받는다.
-4. 추천받은 챔피언 리스트를 테이블 형태로 그려주고, 특정 챔피언의 상세 정보는 row item 영역을 확장시켜 그려준다.
+## 기술 스택
 
-### 가능한 영역인지 확인해야 할 부분
+- SwiftUI
+- Combine
+- Swift Concurrency
 
-- 특정 소환사의 전적을 기반으로 롤 챔피언을 추천받을 수 있는지? 해당 데이터가 유의미한지?
+## API
 
-# Secret API Key 추가 방법
+- Riot API
+- OpenAI API
 
-1. 별도로 전달받은 `Secret.xcconfig` 파일을 SupportingFiles 폴더에 추가합니다.
-2. OpenAI와 Riot Key가 모두 작성되어있는지 확인합니다.
+## 문서
+
+- [다이어그램](https://www.notion.so/joys-page/1e59a7dac740802387b6da6ab20e4e09?pvs=4)
+- [유저 플로우](https://www.figma.com/board/04cz9UsLkz954piUxIbf0q/%EB%A1%A4%EC%B1%94%EC%B6%94%EC%B2%9C-%ED%94%8C%EB%A1%9C%EC%9A%B0%EC%B0%A8%ED%8A%B8?node-id=0-1&t=snZZfi4agct5hkeT-1)
+- [화면 플로우](https://www.figma.com/design/aV40hgOluVFdjVtyN3aPoz/%EB%A1%A4%EC%B1%94%EC%B6%94%EC%B2%9C?node-id=0-1&t=pVkVit1Wu2zh2Or5-1)
+
+## 추가 구상중
+
+- Tuist를 통한 모듈화
+- 전적 데이터 분석 시각화
