@@ -27,17 +27,8 @@ struct MockSearchService: SearchSummonerUseCase {
         ]
     }
     
-    func fetchLeagues(summonerId: String) async throws -> [League] {
-        return [
-            League(
-                leagueId: "1",
-                queueType: .soloOrDuo,
-                tier: "",
-                rank: "",
-                wins: 0,
-                loses: 0
-            )
-        ]
+    func fetchMatchIds(puuid: String, startIndex: Int) async throws -> [String] {
+        return []
     }
     
     func isPlaying(puuid: String) async throws -> Bool {

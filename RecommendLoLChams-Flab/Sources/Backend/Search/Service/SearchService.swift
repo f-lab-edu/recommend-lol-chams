@@ -33,17 +33,17 @@ struct SearchService: SearchSummonerUseCase {
         return dto.toModel()
     }
     
-    func fetchLeagues(summonerId: String) async throws -> [League] {
-        let api = try GetLeagueAPI(summonerId: summonerId)
+    func fetchMatchIds(puuid: String, startIndex: Int) async throws -> [String] {
+        let api = try GetMatchIdAPI(puuid: puuid, startIndex: startIndex, count: 10)
         let data = try await client.fetch(from: api)
         guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
-        return dto.toModel()
+        return dto
     }
     
     func isPlaying(puuid: String) async throws -> Bool {
         do {
             let api = try IsPlayingAPI(puuid: puuid)
-            let _ = try await client.fetch(from: api)
+            _ = try await client.fetch(from: api)
             return true
         } catch HTTPError.statusCode(404) {
             return false
