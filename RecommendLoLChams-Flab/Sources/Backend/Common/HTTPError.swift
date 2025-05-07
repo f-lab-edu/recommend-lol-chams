@@ -8,5 +8,6 @@
 enum HTTPError: Error {
     case invalidURL
     case invalidData
-    case emptyData
+    case invalidURLResponse
+    case statusCode(Int)
 }

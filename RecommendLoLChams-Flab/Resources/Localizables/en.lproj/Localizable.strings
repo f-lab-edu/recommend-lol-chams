@@ -6,9 +6,19 @@
   
 */
 
-tab.search_score = "Search";
-tab.recommend_champion = "Recommendation";
+tab.search_score = "전적검색";
+tab.recommend_champion = "챔피언 추천";
 
-summonor_search.searchbar_placeholder = "Enter your Summoner ID";
-summonor_search.searchbar_button_title = "search";
-summonor_search.empty = "Summoner not found!";
+summoner_search.searchbar_placeholder = "플레이어 이름 + #KR1";
+summoner_search.searchbar_button_title = "검색";
+summoner_search.preview_title = "이제\n플레이어 이름 + 태그로\n전적을 검색하세요!";
+summoner_search.empty = "해당되는 소환사가 없습니다!";
+
+summoner_search.summoner_tagline = "#%@";
+summoner_search.summoner_playing = "게임중";
+summoner_search.summoner_wins = "승 : %@";
+summoner_search.summoner_loses = "패 : %@";
+summoner_search.summoner_ishotstreak = "연승중🔥";
+
+summoner_detail.prefer_position.title = "선호 포지션";
+summoner_detail.prefer_position.rank = "Top %@.";

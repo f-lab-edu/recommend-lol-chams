@@ -237,6 +237,8 @@
 /* Begin XCBuildConfiguration section */
 		33C3F82C2D2D68DB008D1227 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 33C3F8222D2D68D9008D1227 /* RecommendLoLChams-Flab */;
+			baseConfigurationReferenceRelativePath = SupportingFiles/Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
