@@ -31,6 +31,10 @@ struct MockSearchService: SearchSummonerUseCase {
         return []
     }
     
+    func fetchMatch(matchId: String) async throws -> Match {
+        .mock
+    }
+    
     func isPlaying(puuid: String) async throws -> Bool {
         return true
     }

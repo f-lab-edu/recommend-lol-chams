@@ -10,5 +10,6 @@ protocol SearchSummonerUseCase {
     func searchSummoner(puuid: String) async throws -> Summoner
     func fetchRank(summonerId: String) async throws -> [Rank]
     func fetchMatchIds(puuid: String, startIndex: Int) async throws -> [String]
+    func fetchMatch(matchId: String) async throws -> Match
     func isPlaying(puuid: String) async throws -> Bool
 }

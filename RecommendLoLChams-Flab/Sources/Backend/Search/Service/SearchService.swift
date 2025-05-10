@@ -40,6 +40,13 @@ struct SearchService: SearchSummonerUseCase {
         return dto
     }
     
+    func fetchMatch(matchId: String) async throws -> Match {
+        let api = try GetMatchInfoAPI(matchId: matchId)
+        let data = try await client.fetch(from: api)
+        guard let dto = try? Mapper.map(from: data, to: api.response) else { throw HTTPError.invalidData }
+        return dto.toModel()
+    }
+    
     func isPlaying(puuid: String) async throws -> Bool {
         do {
             let api = try IsPlayingAPI(puuid: puuid)
@@ -66,23 +73,29 @@ private extension SummonerDTO {
     }
 }
 
-private extension LeagueDTO {
-    func toModel() -> League? {
-        guard let queueType = League.QueueType(rawValue: queueType) else { return nil }
-        return League(
-            leagueId: leagueId,
-            queueType: queueType,
-            tier: tier,
-            rank: rank,
-            wins: wins,
-            loses: loses
+private extension MatchDTO {
+    func toModel() -> Match {
+        Match(
+            duration: info.gameDuration,
+            queueType: .toType(fromId: info.queueId),
+            participants: info.participants.compactMap {
+                guard let position = Match.Position.toType(fromName: $0.individualPosition) else { return nil }
+                return Match.Participant(
+                    isMe: false,
+                    summonerName: $0.summonerName,
+                    champion: Match.Champion(
+                        id: $0.championId,
+                        name: $0.championName
+                    ),
+                    position: position,
+                    kills: $0.kills,
+                    deaths: $0.deaths,
+                    assists: $0.assists,
+                    dealtDamage: $0.totalDamageDealtToChampions,
+                    earnedGold: $0.goldEarned
+                )
+            }
         )
-    }
-}
-
-private extension Array where Element == LeagueDTO {
-    func toModel() -> [League] {
-        compactMap({ $0.toModel() })
     }
 }
 
@@ -90,7 +103,7 @@ private extension RankDTO {
     func toModel() -> Rank? {
         guard let tier = Tier(rawValue: tier.lowercased()),
               let rank = RankNum(rawValue: rank.lowercased()),
-              let queue = Queue(rawValue: queueType) else { return nil }
+              let queue = Rank.Queue(rawValue: queueType) else { return nil }
         return Rank(
             tier: tier,
             rank: rank,
